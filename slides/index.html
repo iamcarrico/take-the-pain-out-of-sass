@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Take the Pain Outta Sass</title>
+
+		<meta name="description" content="Making working with Sass just a tich easier, for everyone.">
+		<meta name="author" content="Ian Carrico">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="css/main.css">
+
+		<link rel="stylesheet" href="css/theme/fourkitchens.css" >
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/github.css">
+
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body style="font-size: 2.7em;">
+
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Take the Pain Out of Sass</h1>
+				</section>
+
+				<section>
+					<h2>Ian Carrico</h2>
+					<ul class="networks">
+						<li class="work">Backend of Frontend Developer, Four Kitchens</li>
+						<li class="drupal"><a href="https://drupal.org/user/1300542">drupal.org/user/1300542 (ChinggizKhan)</a></li>
+						<li class="twitter"><a href="https://twitter.com/iamcarrico">twitter.com/iamcarrico</a></li>
+						<li class="github"><a href="https://github.com/ChinggizKhan">github.com/ChinggizKhan</a></li>
+					</ul>
+				</section>
+
+        <section>
+          <h2>Why is it hard?</h2>
+          <ul>
+            <li class="fragment">Ruby has many versions, with small changes</li>
+            <li class="fragment">Rubygems can be updated, changed, etc. VERY frequently</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why is this hard?</h2>
+          <ul>
+            <li class="fragment">Mac / System ruby</li>
+            <li class="fragment">Different ruby / gems per-project</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Simple things first!</h2>
+          <h3><code>echo 'gem: --no-rdoc --no-ri' >> ~/.gemrc</code></h3>
+        </section>
+
+        <section>
+          <h2>rbenv</h2>
+          <section></section>
+          <section>
+            <h3>Why would I not use system ruby?</h3>
+            <h4>If you need different versions of ruby.</h4>
+          </section>
+          <section>
+            <h3>Beware!</h3>
+            <h4>The next version of OS X will have Ruby 2.0.0-p247</h4>
+          </section>
+          <section>
+            <h3>What does it do?</h3>
+            <ul>
+              <li>Allow different versions of ruby</li>
+              <li>Put the ruby installation into your user directory</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Installation requires homebrew</h3>
+            <h4 class="fragment">So... install that</h4>
+          </section>
+          <section>
+            <h3>Installation</h3>
+            <p><code>brew install rbenv ruby-build</code></p>
+            <p><code>echo 'eval "$(rbenv init -)"' >> ~/.bash_profile</code></p>
+          </section>
+          <section>
+            <h3>Install a version of ruby</h3>
+            <p><code>rbenv install 2.0.0-p247</code></p>
+            <p><code>rbenv rehash</code></p>
+            <p><code>rbenv global 2.0.0-p247</code></p>
+          </section>
+          <section>
+            <h3>.ruby-version</h3>
+            <p>If you weren't paying attention because you don't need rbenv, come back now!</p>
+          </section>
+          <section>
+            <h3>.ruby-version</h3>
+            <p>Put a file at the root of ALL your projects called ".ruby-version"</p>
+            <ul>
+              <li>1.8.7-p358</li>
+              <li>2.0.0-p247</li>
+            </ul>
+          </section>
+          <section>
+            <h3>.ruby-version</h3>
+            <p><code>rbenv local 2.0.0-p247</code></p>
+          </section>
+        </section>
+
+        <section>
+          <h2>Bundler</h2>
+          <section>
+            <h3>Manages your gem versions</h3>
+          </section>
+          <section>
+            <h3>Just a ruby gem</h3>
+            <code>{sudo} gem install bundler</code>
+          </section>
+          <section>
+            <h3>Bundler is now ready to use!</h3>
+          </section>
+          <section>
+            <h3>Gemfile / Gemfile.lock</h3>
+            <p>The latter is made after running <code>bundle install</code></p>
+          </section>
+          <section>
+            <h3>Configuration (optional)</h3>
+            <h4><code>mkdir ~/.bundle</code></h4>
+            <h4><code>echo 'BUNDLE_PATH: vendor/bundle' >> ~/.bundle/config</code></h4>
+          </section>
+          <section>
+            <h3><code>bundle install</code></h3>
+          </section>
+          <section>
+            <h3><code>sudo bundle install</code></h3>
+            <h1 class="fragment" style="color:red;">DON'T DO THIS</h1>
+          </section>
+          <section>
+            <h3><code>bundle exec {{command}}</code></h3>
+            <p><code>bundle exec compass compile</code></p>
+          </section>
+        </section>
+
+        <section>
+          <h2>Grunt.js</h2>
+          <section></section>
+          <section>
+            <h3>Have grunt.js compile your Sass <span class="fragment">AND MORE!</span></h3>
+          </section>
+          <section>
+            <h3>What can it do?</h3>
+            <ul>
+              <li class="fragment">Livereload</li>
+              <li class="fragment">Image minification</li>
+              <li class="fragment">JavaScript linting</li>
+              <li class="fragment">JavaScript minification</li>
+              <li class="fragment">Jekyll integration</li>
+              <li class="fragment">... etc.</li>
+            </ul>
+          </section>
+        </section>
+
+
+				<section>
+					<img src="img/4k-text.svg" alt="Four Kitchens" class="bare">
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+        <span id="current-slide"></span>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+
+      var currentSlide = document.getElementById('current-slide');
+      Reveal.addEventListener('slidechanged', function(data) {
+        currentSlide.innerHTML = data.indexh + '/' + data.indexv;
+      });
+		</script>
+
+	</body>
+</html>

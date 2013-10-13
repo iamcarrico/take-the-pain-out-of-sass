@@ -1,0 +1,9 @@
+# Ignore Sass stuff
+.sass-cache
+
+# For Grunt npm modules
+node_modules
+_tmp
+
+# My bundler stuff
+vendor/bundle
